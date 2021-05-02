@@ -47,7 +47,7 @@ class Action extends React.Component {
     );
   }
 }
-  //  1.
+//  1.
 class Options extends React.Component {
   // 2.
   constructor(props) {
@@ -62,7 +62,6 @@ class Options extends React.Component {
     return (
       <div>
         <button onClick={this.removeAll}>Remove all</button>
-        <Option />
         {this.props.options.map((option, key) => {
           return <Option key={key} optionText={option} />;
         })}

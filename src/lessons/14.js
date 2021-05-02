@@ -25,14 +25,14 @@ console.log(pet.getAnimal())
 const getName =  pet.getAnimal;
 // console.log(getName());   // error
 
-// So this is exactly what we're seeing.
+// So this is exactly what we're seeing. 'this.animal' doesnt belong to pet
 const getName2 = function(){
   return this.animal;
 }
 // getName2()  // error
 
 /*
-Bind is a method on a function which means right here on get name I can access bind and we're going to want to call it when we call it we get our function back which means that this and this are actually the exact same thing.
+Bind is a method on a function which means right here on getAnimal() I can access bind and we're going to want to call it when we call it we get our function back which means that this and this are actually the exact same thing.
 The cool thing about bind and the reason why it's actually useful is that you can use the first argument to set the this context which means that I can set it equal to that object. Once again bringing the context back to what we would expect.
 */
 const getName3 = pet.getAnimal.bind(pet);
