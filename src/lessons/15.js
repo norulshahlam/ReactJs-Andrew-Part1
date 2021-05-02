@@ -5,9 +5,11 @@ babel src/lessons/15.js --out-file=public/scripts/app.js --presets=env,react --w
 
 we discussed binding issue and how to resolve. now this binding issues pertains to the event handlers.
 
-1. in Options components, we have removeAll() & render(). render() has access to the options props but removeAll() doesnt have bcos of this binding issue. we will implement bind() to solve this issues on all events handlers, so that events handlers can access props like render() does too
+1. in Options components, we have removeAll() & render(). render() has access to the options props but removeAll() doesnt - bcos of the binding issue. 
 
-2. removeAll()
+a) we will implement bind() to solve this issues on all events handlers - 
+b) once done, event handlers removeAll() can access props too
+
 
 */
 class IndecisionApp extends React.Component {
@@ -47,14 +49,14 @@ class Action extends React.Component {
     );
   }
 }
-//  1.
+
 class Options extends React.Component {
-  // 2.
+  // a)
   constructor(props) {
     super(props);
     this.removeAll = this.removeAll.bind(this);
   }
-
+    // b) now this func have access to options props
   removeAll() {
     console.log(this.props.options);
   }

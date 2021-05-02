@@ -3,7 +3,9 @@ Run this first - npm run server
 Run this after -
 babel src/lessons/20.js --out-file=public/scripts/app.js --presets=env,react --watch
 
-stateless functional component - a component that doesnt manage state
+stateless functional component 
+- a component that doesnt manage state
+- a component that doesnt manage lifestyle methods
 
 convert some component into func component
 

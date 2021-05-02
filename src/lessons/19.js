@@ -14,8 +14,8 @@ babel src/lessons/19.js --out-file=public/scripts/app.js --presets=env,react --w
    by component
 
 
-1. understnad which is parent method and 
-2. which is current child method
+1. understnad which is parent method - "this.props.addOption"
+2. which is current child method - "this.addOption"
 3. adding option from <AddOption /> and pass up to <Root />
 4. avoid manipulating the state itself, instead concat the current options with the newly added option -> this will return a new array
 
@@ -71,7 +71,6 @@ class Root extends React.Component {
     return (
       <div>
         <Header title={title} subtitle={subtitle} />
-        {/* 2.  */}
         <Action
           hasOptions={this.state.options.length > 0}
           handlePick={this.handlePick}
@@ -139,7 +138,8 @@ class AddOption extends React.Component {
     e.preventDefault();
 
     const option = e.target.elements.option.value.trim();
-    // 1. this refers to the parent method
+    // 1 - this refers to the parent method
+    // 3 - pass props 'upwards'
     const error = this.props.addOption(option);
     this.setState(() => {
       return {

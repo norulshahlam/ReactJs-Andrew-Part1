@@ -7,15 +7,19 @@ now we learned about prevState and binding, lets apply it to our main app
 
 1. remove options from the main and set it as state
 
-2. send state to <Action/> - true or false, if there is any options, by using condition
+2. send state to <Action/> - true or false, if there is any option list, by using condition
 
-3. in <Action/> component, if there is no options, then diasable the button. check using the true/false state send from main component
+3. in <Action/> component, if there is no options, then disable the button. check using the true/false state send from main component
 
+******************************************************************
 we learn about passing props/state downwards but we cant pass upwards. we will learn how to resolve this
 
-we want to delete all options but we 1 <Options /> to do it. Since the options state is in <Root />, we need to pass down to <Options /> to triggger it, then go up back to <Root /> to clear it. but how do we pass the state upwards?
+4we want to delete all options but we want <Options /> to do it. Since the options state is in <Root />, we need to pass down to <Options /> to triggger it, then go up back to <Root /> to clear it. but how do we pass the state upwards?
 
-4. we simply wrap this state in a function in <Root />, pass it down to <option /> as a prop, and then let this function (in a prop) be called by the onClick event. so when we click, the function will clear this state. so in a way we can 'bring up' a prop
+a) we simply create a function in <Root /> where it will clear all option. 
+b) Then we pass it down to <Options /> as a prop.
+c) Then this function (as a prop) be called by the onClick event in <Options /> . In another word, this props will be event handler for onClick in <Options /> .
+d) So when we click in <Options />, the function will clear this state. so in a way we can 'bring up' a prop
 
 5. do the same for handlePick() - just generate random list option  on console
 
@@ -34,7 +38,7 @@ class Root extends React.Component {
   deleteOption() {
     this.setState(() => {
       return {
-        // 4c
+        // 4c - this will clear all options
         options: [],
       };
     });
@@ -80,7 +84,7 @@ class Action extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.handlePick}>pick a list!</button>
+        <button onClick={this.props.handlePick}>pick a list!</button><br/>
         <button
           onClick={this.handlePick}
           // 3.
