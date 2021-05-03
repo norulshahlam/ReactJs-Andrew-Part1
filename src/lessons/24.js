@@ -23,7 +23,11 @@ further reading -
 
 4. using the above lifecycle method we will be loading and saving our option into local storage
 
-4a. save option - using condition to avoid unnecesary save
+4a. UPDATE options to localstorage - using condition to UPDATE only if there is changes in options
+
+4b. load options from localStroage (if any), using try/catch
+
+5. prompt user to add option if option list is empty
 
 
 
@@ -42,8 +46,7 @@ class Root extends React.Component {
   }
   // 1.
   componentDidMount() {
-
-    console.log(1111);
+    // 4b.
     try {
       const json = localStorage.getItem("options");
 
@@ -59,7 +62,7 @@ class Root extends React.Component {
     // 2a
     console.log(prevState);
 
-    // 4a. check if user is saving, then we will save
+    // 4a. check if there is any delete / add
     if (prevState.options.length !== this.state.options.length) {
       const json = JSON.stringify(this.state.options);
       localStorage.setItem("options", json);
@@ -148,6 +151,8 @@ const Options = (props) => {
   return (
     <div>
       <button onClick={props.deleteAllOptions}>Remove all</button>
+      {/* 5 */}
+      {props.options.length === 0 && <p>Please add option!</p>}
       {props.options.map((option, key) => (
         <Option
           key={key}
