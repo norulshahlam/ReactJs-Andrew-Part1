@@ -23,7 +23,7 @@ https://www.udemy.com/course/react-2nd-edition/learn/lecture/7707750#content
 
    now we can just run above 1 script onwards. it will compile and server as a live-server at the same time 
 
-   3. ES6 class properties
+   3. ES6 class properties - remove the need for bind()
 
    run: npm i babel-plugin-transform-class-properties@6.24.1
 
@@ -31,7 +31,11 @@ https://www.udemy.com/course/react-2nd-edition/learn/lecture/7707750#content
 
     "plugins":[
     "transform-class-properties"
-  ]
+    ]
+
+    now that we dont need bind(), we can now refactor everything by 
+    a) removing the constructor() in all components
+    b) convert all es6 methods into class properties
 */
 import React from "react";
 import AddOption from "./AddOption";
@@ -40,60 +44,25 @@ import Header from "./Header";
 import Options from "./Options";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.deleteAllOptions = this.deleteAllOptions.bind(this);
-    this.handlePick = this.handlePick.bind(this);
-    this.addOption = this.addOption.bind(this);
-    this.deleteOneOption = this.deleteOneOption.bind(this);
-    this.state = {
-      options: props.options,
-    };
-  }
+  state = {
+    options: [],
+  };
 
-  componentDidMount() {
-
-    try {
-      const json = localStorage.getItem("options");
-console.log(1111);
-      const options = JSON.parse(json);
-      if (options) {
-        this.setState(() => ({ options }));
-      }
-    } catch (error) {}
-  }
-
-  componentDidUpdate(prevProps, prevState) {
- 
-    console.log(prevState);
-
-
-    if (prevState.options.length !== this.state.options.length) {
-      const json = JSON.stringify(this.state.options);
-      localStorage.setItem("options", json);
-    }
-  }
- 
-  componentWillUnmount() {
-
-    console.log(4);
-  }
-
-  deleteAllOptions() {
+  deleteAllOptions=()=> {
     this.setState(() => ({ options: [] }));
   }
 
-  deleteOneOption(option) {
+  deleteOneOption=(option) =>{
     this.setState((prev) => ({
       options: prev.options.filter((item) => option !== item),
     }));
   }
-  handlePick() {
+  handlePick=()=> {
     const random = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[random];
     console.log(option);
   }
-  addOption(option) {
+  addOption=(option)=> {
     if (!option) {
       return "Enter valid value";
     } else if (this.state.options.indexOf(option) > -1) {
@@ -103,6 +72,30 @@ console.log(1111);
       options: prevState.options.concat(option),
     }));
   }
+  componentDidMount() {
+    try {
+      const json = localStorage.getItem("options");
+      console.log(1111);
+      const options = JSON.parse(json);
+      if (options) {
+        this.setState(() => ({ options }));
+      }
+    } catch (error) {}
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevState);
+
+    if (prevState.options.length !== this.state.options.length) {
+      const json = JSON.stringify(this.state.options);
+      localStorage.setItem("options", json);
+    }
+  }
+
+  componentWillUnmount() {
+    console.log(4);
+  }
+
   render() {
     const title = "Indecision";
     const subtitle = "Put your life in the hands of computer";
@@ -129,4 +122,4 @@ App.defaultProps = {
   options: [],
 };
 
-export default App
+export default App;
