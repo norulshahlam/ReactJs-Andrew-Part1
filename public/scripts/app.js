@@ -11,7 +11,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /*  ****** LESSON  25*******
 Run this first - npm run server
 Run this after -
-babel src/lessons/25.js --out-file=public/scripts/app.js --presets=env,react --watch
+babel src/lesson1/25.js --out-file=public/scripts/app.js --presets=env,react --watch
 
 Saving and Loading the Count to/from localstorage using lifecycle methods
 
