@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/lesson2/4/4.js",
+  entry: "./src/lesson2/5/5.js",
   output: {
     path: path.join(__dirname, "public"),
     filename: "bundle.js",
@@ -13,10 +13,14 @@ module.exports = {
         test: /\.js/,
         exclude: /node_modules/,
       },
+      {
+        test: /\.s?css$/,
+        use: ["style-loader", "css-loader",'sass-loader'],
+      },
     ],
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: "cheap-module-eval-source-map",
   devServer: {
-    contentBase: path.join(__dirname, "public")
-  }
+    contentBase: path.join(__dirname, "public"),
+  },
 };
