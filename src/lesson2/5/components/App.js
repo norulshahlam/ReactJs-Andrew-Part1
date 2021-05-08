@@ -138,12 +138,16 @@ class App extends React.Component {
             hasOptions={this.state.options.length > 0}
             handlePick={this.handlePick}
           />
-          <Options
+
+          <div className='widget'>
+           <Options
             options={this.state.options}
             deleteAllOptions={this.deleteAllOptions}
             deleteOneOption={this.deleteOneOption}
           />
           <AddOption addOption={this.addOption} />
+          </div>
+         
         </div>
 
         <OptionModal

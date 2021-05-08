@@ -17,10 +17,12 @@ const OptionModal = (props) => {
       isOpen={!!props.selectedOption}
       contentLabel="Selected Option"
       onRequestClose={props.closeModal}
+      closeTimeoutMS={200}
+      className='modal'
     >
-      {props.selectedOption && <p>{props.selectedOption}</p>}
-      <button onClick={props.closeModal}>Close</button>
-      <h3>Selected Option</h3>
+    <h3 className='moda__title'>Selected Option</h3>
+      {props.selectedOption && <p className='modal__body'>{props.selectedOption}</p>}
+      <button className='button' onClick={props.closeModal}>Close</button>
     </Modal>
   );
 };
