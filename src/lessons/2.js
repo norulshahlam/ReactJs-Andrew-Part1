@@ -1,18 +1,14 @@
-
-
 /*  ****** LESSON 2 *******
 
-Run this first - npm run server
-Run this after -
+change this first:
 babel src/lesson1/2.js --out-file=public/scripts/app.js --presets=env,react --watch
+Run this later - npm run server
 
 1. use ternatory as condition in jsx
-2. use logical AND operator -  if true render, else dont do anything
-    3. using function as condition and output with html element
+2. use logical 'AND' operator -  if true render, else dont do anything
+3. using function as condition and output with html element
  
 */
-
-
 
 var user = {
   name: "shah",

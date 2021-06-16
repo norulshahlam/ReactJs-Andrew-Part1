@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "babel": "babel src/lesson1/4.js --out-file=public/scripts/app.js --presets=env,react --watch",
     "server": "live-server public/",
     "webpack": "webpack --watch",
     "dev-server": "webpack-dev-server"

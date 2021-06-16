@@ -1,8 +1,9 @@
 /*  ****** LESSON 5 *******
 
-Run this first - npm run server
-Run this after -
+change this first:
 babel src/lesson1/5.js --out-file=public/scripts/app.js --presets=env,react --watch
+Run this later - npm run server
+***************************************
 
 solving the redering updated issue 
 
@@ -15,18 +16,18 @@ let count = 0;
 const addOne = () => {
   count++;
   console.log(count);
-  renderCounter()
+  renderCounter();
 };
 const minusOne = () => {
   count--;
   console.log(count);
-  renderCounter()
+  renderCounter();
 };
 
 const reset = () => {
   count = 0;
   console.log(count);
-  renderCounter()
+  renderCounter();
 };
 const appRoot = document.getElementById("app");
 const renderCounter = () => {
@@ -44,4 +45,4 @@ const renderCounter = () => {
   ReactDOM.render(template, appRoot);
 };
 
-renderCounter()
+renderCounter();

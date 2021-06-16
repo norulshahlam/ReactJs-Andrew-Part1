@@ -1,12 +1,8 @@
-
-
 /* ****** LESSON 1 *******
 
-
-Run this first - npm run server
-Run this after -
-babel src/lesson1/3.js --out-file=public/scripts/app.js --presets=env,react --watch
-
+change this first:
+babel src/lesson1/1.js --out-file=public/scripts/app.js --presets=env,react --watch
+Run this later - npm run server
 
 1. Rendering into browser using jsx
 

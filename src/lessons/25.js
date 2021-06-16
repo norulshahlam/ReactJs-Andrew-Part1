@@ -5,6 +5,7 @@ babel src/lesson1/25.js --out-file=public/scripts/app.js --presets=env,react --w
 
 Saving and Loading the Count to/from localstorage using lifecycle methods
 
+after this lesson, comment the 3 scripts in index.html
 
 */
 class Counter extends React.Component {

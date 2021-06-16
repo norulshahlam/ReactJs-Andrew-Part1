@@ -1,8 +1,9 @@
 /*  ****** LESSON  7*******
 
-Run this first - npm run server
-Run this after -
+change this first:
 babel src/lesson1/7.js --out-file=public/scripts/app.js --presets=env,react --watch
+Run this later - npm run server
+***************************************
 
 1. create button to select added list randomly - using random()
 2. disable this button (cond rendering) if theres no list added yet
@@ -28,39 +29,35 @@ const onFormSubmit = (e) => {
   }
 };
 
-const removeLists = ()=>{
-  app.options=[];
-  render()
-}
+const removeLists = () => {
+  app.options = [];
+  render();
+};
 // 1.
-const makeDecision = ()=>{
- const random= Math.floor(Math.random() * app.options.length);
- const option = app.options[random];
- alert(option)
- console.log(random);
-  render()
-}
-
+const makeDecision = () => {
+  const random = Math.floor(Math.random() * app.options.length);
+  const option = app.options[random];
+  alert(option);
+  console.log(random);
+  render();
+};
 
 const render = () => {
   const template = (
     <div>
       <h1>{app.title}</h1>
       <p>{app.options.length > 0 ? "Here are your options" : "No options"}</p>
-      {app.options.length} <br/>
+      {app.options.length} <br />
       <button onClick={removeLists}>remove list</button>
       {/* 2. */}
-      <button disabled={app.options.length===0} onClick={makeDecision}>what should i do?</button>
+      <button disabled={app.options.length === 0} onClick={makeDecision}>
+        what should i do?
+      </button>
       <ol>
-
-       {
-         
-         app.options.map((i, k)=>{
-           return <p key={k}>Options: {i}</p>
-         })
-       }
+        {app.options.map((i, k) => {
+          return <p key={k}>Options: {i}</p>;
+        })}
       </ol>
-
       <form onSubmit={onFormSubmit}>
         <input type="text" name="option" />
         <button>Add option</button>

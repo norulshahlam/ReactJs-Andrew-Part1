@@ -1,123 +1,58 @@
 "use strict";
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+/*  ****** LESSON 4 *******
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+change this first:
+babel src/lesson1/4.js --out-file=public/scripts/app.js --presets=env,react --watch
+Run this later - npm run server
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/*  ****** LESSON  25*******
-Run this first - npm run server
-Run this after -
-babel src/lesson1/25.js --out-file=public/scripts/app.js --presets=env,react --watch
-
-Saving and Loading the Count to/from localstorage using lifecycle methods
-
-
+redering updated values - in previous lesson we managed to get event triggered thru console log. now we use it to update the numbers on the browser. however it doesnt update because it is rendered once (A). Although the value has changed, it is not reflected on browser. next lesson we will solve by  some adjustments on the code so u can see the diff
 */
-var Counter = function (_React$Component) {
-  _inherits(Counter, _React$Component);
 
-  function Counter(props) {
-    _classCallCheck(this, Counter);
+var count = 0;
 
-    var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
+var addOne = function addOne() {
+  count++;
+  console.log(count);
+};
+var minusOne = function minusOne() {
+  count--;
+  console.log(count);
+};
 
-    _this.add = _this.add.bind(_this);
-    _this.minus = _this.minus.bind(_this);
-    _this.reset = _this.reset.bind(_this);
-    _this.state = {
-      count: 0
-    };
-    return _this;
-  }
-
-  _createClass(Counter, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      try {
-        var json = localStorage.getItem("count");
-
-        var count = parseInt(json, 10);
-
-        if (!isNaN(count)) {
-          this.setState(function () {
-            return { count: count };
-          });
-        }
-      } catch (error) {}
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
-      if (prevState.count !== this.state.count) {
-        localStorage.setItem("count", this.state.count);
-      }
-      console.log(prevState);
-    }
-  }, {
-    key: "add",
-    value: function add() {
-      this.setState(function (prevState) {
-        return {
-          count: prevState.count + 1
-        };
-      });
-    }
-  }, {
-    key: "minus",
-    value: function minus() {
-      this.setState(function (prevState) {
-        return {
-          count: prevState.count - 1
-        };
-      });
-    }
-  }, {
-    key: "reset",
-    value: function reset() {
-      this.setState(function () {
-        return {
-          count: 0
-        };
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return React.createElement(
-        "div",
-        null,
-        React.createElement(
-          "h1",
-          null,
-          "count: ",
-          this.state.count,
-          " "
-        ),
-        React.createElement(
-          "button",
-          { onClick: this.add },
-          "+1"
-        ),
-        React.createElement(
-          "button",
-          { onClick: this.minus },
-          "-1"
-        ),
-        React.createElement(
-          "button",
-          { onClick: this.reset },
-          "reset"
-        )
-      );
-    }
-  }]);
-
-  return Counter;
-}(React.Component);
+var reset = function reset() {
+  count = 0;
+  console.log(count);
+};
+var template = React.createElement(
+  "div",
+  null,
+  React.createElement(
+    "h1",
+    null,
+    "Count: ",
+    count
+  ),
+  React.createElement(
+    "button",
+    { onClick: addOne },
+    "+1"
+  ),
+  React.createElement("br", null),
+  React.createElement(
+    "button",
+    { onClick: minusOne },
+    "-1"
+  ),
+  React.createElement("br", null),
+  React.createElement(
+    "button",
+    { onClick: reset },
+    "reset"
+  ),
+  React.createElement("br", null)
+);
 
 var appRoot = document.getElementById("app");
-ReactDOM.render(React.createElement(Counter, null), appRoot);
+// (A)
+ReactDOM.render(template, appRoot);

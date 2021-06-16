@@ -1,15 +1,16 @@
 /*  ****** LESSON  6*******
 
-Run this first - npm run server
-Run this after -
+change this first:
 babel src/lesson1/6.js --out-file=public/scripts/app.js --presets=env,react --watch
+Run this later - npm run server
+***************************************
 
-1. forms - add value into app.options[] and reflect the changes in browser using the same tehnique in last lesson
+1. forms - add value into app.options[] and reflect the changes in browser using the same technique in last lesson
 
 2. clear all options with the reset button
 3. changing the renderCounter to just render()
 4. render an array using map() and understand unique key props
-5. consitional rendering
+5. conditional rendering
 */
 
 const appRoot = document.getElementById("app");
